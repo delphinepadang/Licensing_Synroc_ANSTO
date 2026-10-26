@@ -46,15 +46,15 @@ Text lives in `index.qmd`. The RQ tab text and the gate descriptions are in `ass
    ```
    quarto preview
    ```
-   RStudio already includes Quarto. The site opens in the Viewer, and the finished files go in `_site/`.
+   RStudio already includes Quarto. The site opens in the Viewer, and the finished files go in `docs/`.
 
 ## Put it online (free)
 
 Pick one:
 
 - **Quarto Pub** (easiest). In the RStudio Terminal run `quarto publish quarto-pub` and log in when asked. You get a link like `https://<you>.quarto.pub/licensing-synroc`.
-- **Netlify Drop.** Drag the `_site` folder onto https://app.netlify.com/drop.
-- **GitHub Pages.** Push the project to GitHub and run `quarto publish gh-pages`.
+- **Netlify Drop.** Drag the `docs` folder onto https://app.netlify.com/drop.
+- **GitHub Pages.** Render in RStudio first, then commit and push the whole project, including `docs/`. On GitHub go to Settings → Pages → Source: *Deploy from a branch* → Branch `main`, folder `/docs`. GitHub can't run Quarto itself, so it must publish the already-rendered `docs/` folder.
 
 Then put the link, or a QR code of it, on the final slide.
 
