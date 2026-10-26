@@ -1,5 +1,8 @@
 {
   "references.qmd": {
     "references.html": "f4b34567"
+  },
+  "index.qmd": {
+    "index.html": "4cbbfc6c"
   }
 }
