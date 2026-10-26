@@ -1,0 +1,25 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - assets/
+
+website:
+  title: "Licensing Synroc"
+  description: "Where ANSTO should take its Synroc waste technology next. SCPU3001 group project, University of Sydney."
+
+format:
+  html:
+    theme: cosmo
+    css: assets/site.css
+    include-in-header: assets/head.html
+    page-layout: custom
+    toc: false
+    anchor-sections: false
+    smooth-scroll: false
+    link-external-newwindow: true
+
+execute:
+  echo: false
+  warning: false
+  message: false

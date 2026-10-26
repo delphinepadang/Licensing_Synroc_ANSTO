@@ -1,0 +1,212 @@
+---
+pagetitle: "Licensing Synroc · SCPU3001"
+description: "Where ANSTO should take its Synroc waste technology next: an interactive summary of our SCPU3001 project."
+---
+
+```{r}
+#| label: data
+#| echo: false
+#| output: asis
+# All numbers on this page come from R/site_data.R (mirrors synroc_model.R).
+source("R/site_data.R", encoding = "UTF-8")
+cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
+```
+
+```{=html}
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Licensing <span>Synroc</span></a>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#where">Where</a>
+      <a href="#questions">Research</a>
+      <a href="#decision">Decision</a>
+      <a href="#economics">Economics</a>
+      <a href="#risks">Risks</a>
+      <a href="#plan">Plan</a>
+      <a href="references.html">Sources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================== HERO ============================== -->
+<header class="section hero" id="top">
+  <span class="kicker">SCPU3001 · Industry partner: ANSTO</span>
+  <h1>Licensing<br>Synroc</h1>
+  <p class="lede">Every nuclear-medicine scan leaves radioactive waste behind. ANSTO can shrink it by up to 99%. Our question: <b>where should ANSTO take this technology first?</b></p>
+  <div class="hero-actions">
+    <a class="cta solid" href="#decision">Try the decision model</a>
+    <a class="cta" href="#plan">See our plan</a>
+  </div>
+  <div class="grid-4">
+    <div class="panel stat reveal"><div class="num" data-count="99" data-suffix="%">99%</div><div class="lab">less waste volume than cement, at best <a class="cite" href="references.html#r2">[2]</a></div></div>
+    <div class="panel stat reveal"><div class="num"><span data-count="2">2</span> sites</div><div class="lab">fit today: Petten (NL) and Fleurus (BE)</div></div>
+    <div class="panel stat reveal"><div class="num" data-count="100" data-suffix="%">100%</div><div class="lab">of 10,000 weightings rank the Netherlands first</div></div>
+    <div class="panel stat reveal"><div class="num"><span data-count="3">3</span> gates</div><div class="lab">to pass before any licence is signed</div></div>
+  </div>
+  <p class="team-line">Morris · Lydia · Ibrahim · Andres · Tommy · Delphine — University of Sydney, October 2026</p>
+</header>
+
+<!-- ============================ PROBLEM ============================= -->
+<section class="section" id="problem">
+  <span class="kicker">01 · The problem</span>
+  <h2>Waste with nowhere to go,<br>a fix without a market</h2>
+  <p class="lede">Making molybdenum-99 leaves 2.6–15 m³ of liquid radioactive waste a year worldwide <a class="cite" href="references.html#r1">[1]</a>, <a class="cite" href="references.html#r3">[3]</a>. No target country can dispose of it yet: the Netherlands plans disposal around 2130 <a class="cite" href="references.html#r4">[4]</a>. ANSTO's Synroc shrinks it, and its first plant, SyMo, is being commissioned <a class="cite" href="references.html#r5">[5]</a>.</p>
+  <div class="grid-2" style="margin-top:28px">
+    <div class="panel reveal">
+      <h3>Shrink the waste</h3>
+      <p class="note" style="margin-top:0">Drag to set the liquid waste a producer makes each year. Cube sizes are drawn to true volume.</p>
+      <div class="control">
+        <label for="vol">Liquid waste per year <output id="volOut">3.0 m³</output></label>
+        <input type="range" id="vol" min="0.5" max="15" step="0.1" value="3">
+      </div>
+      <svg class="cubes" id="cubes" viewBox="0 0 560 300" role="img" aria-label="Volume comparison cubes"></svg>
+    </div>
+    <div class="panel reveal">
+      <h3>What changes</h3>
+      <div class="big-compare">
+        <span class="pill pink">Cemented: <b id="cemOut">25 m³</b></span>
+        <span class="pill mint">Synroc: <b id="synOut">0.25–1 m³</b></span>
+      </div>
+      <p style="margin-top:18px">Cemented, each cubic metre becomes about <b>25 m³</b> of packages that must be stored, and paid for, until disposal. Synroc turns it into <b>0.25–1 m³</b> of dense ceramic <a class="cite" href="references.html#r2">[2]</a>, <a class="cite" href="references.html#r3">[3]</a>.</p>
+      <p><b>Our aim:</b> show ANSTO where, and in what commercial form, to offer Synroc abroad.</p>
+      <h3 style="margin-top:22px">Who gains if it works</h3>
+      <div class="grid-2" style="gap:10px">
+        <div class="pill mint">ANSTO: export revenue, no plant abroad</div>
+        <div class="pill blue">COVRA, ONDRAF: up to 99% less to store</div>
+        <div class="pill" style="background:var(--lilac)">Curium, IRE: lower waste charges</div>
+        <div class="pill pink">Host towns: no new waste site</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= WHERE ============================== -->
+<section class="section" id="where">
+  <span class="kicker">02 · Where the waste is</span>
+  <h2>Eight jurisdictions, two real candidates</h2>
+  <p class="lede">We screened four Commonwealth and three EU countries against Australia as the benchmark. Click a country.</p>
+  <div class="legend">
+    <span><i class="st-Proceeds"></i>Proceeds to ranking</span>
+    <span><i class="st-Evidence"></i>Evidence gap</span>
+    <span><i class="st-Benchmark"></i>Benchmark</span>
+    <span><i class="st-Excluded"></i>Excluded: no matching waste</span>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="panel detail reveal" id="countryDetail"></div>
+  <p class="note">Legal score: four-question test of each jurisdiction's law. Political score: Kingdon's policy-window model <a class="cite" href="references.html#r7">[7]</a>. Both 1–5.</p>
+</section>
+
+<!-- =========================== QUESTIONS ============================ -->
+<section class="section" id="questions">
+  <span class="kicker">03 · Four questions</span>
+  <h2>Four disciplines, one decision</h2>
+  <p class="lede">Each of us took one question. Each answer is a condition a rollout must meet.</p>
+  <div class="tabs" id="rqTabs"></div>
+  <div class="rq-grid" id="rqPanel"></div>
+</section>
+
+<!-- ============================ DECISION ============================ -->
+<section class="section" id="decision">
+  <span class="kicker">04 · The decision model</span>
+  <h2>Weigh it your way</h2>
+  <p class="lede">Stage 1 screened out every site that fails a must-have. Stage 2 ranks the rest with weights <a class="cite" href="references.html#r6">[6]</a>. Set your own priorities and see who comes first.</p>
+  <div class="grid-2" style="margin-top:26px">
+    <div class="panel reveal">
+      <h3>Your weights</h3>
+      <div class="seg presets" id="presets">
+        <button data-w="25,25,25,25" class="on">Equal</button>
+        <button data-w="15,55,15,15">Cost</button>
+        <button data-w="15,15,15,55">Community</button>
+        <button data-w="55,15,15,15">Technology</button>
+      </div>
+      <div id="weightControls"></div>
+      <p class="wsum" id="wsum"></p>
+    </div>
+    <div class="panel reveal">
+      <h3>Who ranks first</h3>
+      <div class="bars" id="rankBars"></div>
+      <div class="verdict" id="verdict"></div>
+      <p class="note" id="smaaNote"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ECONOMICS =========================== -->
+<section class="section" id="economics">
+  <span class="kicker">05 · The economics</span>
+  <h2>Timing, not chemistry, decides</h2>
+  <p class="lede">Where the waste agency charges for disposal at hand-over, every cubic metre avoided saves the full charge. Where disposal is decades away, discounting erases the saving.</p>
+  <div class="grid-2" style="margin-top:26px">
+    <div class="panel reveal">
+      <h3>Does licensing pay?</h3>
+      <div class="seg" id="econCountry"></div>
+      <div class="control">
+        <label for="econVol">Producer's liquid waste <output id="econVolOut"></output></label>
+        <input type="range" id="econVol" min="0.1" max="5" step="0.1" value="0.7">
+      </div>
+      <svg class="econ-svg" id="econSvg" viewBox="0 0 560 150" role="img" aria-label="Volume against break-even"></svg>
+      <div class="kpis">
+        <div class="kpi"><div class="v" id="kSave"></div><div class="l">median saving per year</div></div>
+        <div class="kpi"><div class="v" id="kHead"></div><div class="l">volume it can lose and still pay</div></div>
+        <div class="kpi"><div class="v" id="kP"></div><div class="l">of 20,000 scenarios cheaper than cement</div></div>
+      </div>
+      <p class="note">Median saving per m³ and break-even volumes from our 20,000-draw Monte Carlo model; present values at a 3.5% real discount rate <a class="cite" href="references.html#r10">[10]</a>.</p>
+    </div>
+    <div class="panel reveal">
+      <h3>Why distance kills value</h3>
+      <div class="control">
+        <label for="years">Years until the disposal charge is paid <output id="yearsOut"></output></label>
+        <input type="range" id="years" min="0" max="60" step="1" value="0">
+      </div>
+      <svg class="econ-svg" id="pvSvg" viewBox="0 0 560 230" role="img" aria-label="Present value of A$1 avoided"></svg>
+      <p id="pvText" style="margin-top:10px"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== RISKS ============================= -->
+<section class="section" id="risks">
+  <span class="kicker">06 · What could go wrong</span>
+  <h2>Sixteen risks, three that could stop everything</h2>
+  <p class="lede">Agency refusal (R1), no operating licence for SyMo (R6) and a formulation that fails on real waste (R7) would remove both countries at once. They cannot be diversified, so each becomes a gate.</p>
+  <div class="seg" id="riskMode" style="margin:18px 0 18px">
+    <button class="on" data-m="inherent">Before treatment</button>
+    <button data-m="residual">After treatment</button>
+  </div>
+  <div class="grid-2">
+    <div class="panel reveal">
+      <div class="matrix-wrap">
+        <div class="axis-y">Likelihood →</div>
+        <div class="matrix" id="matrix"></div>
+      </div>
+      <div class="axis-x"><span>Low impact</span><span>Medium</span><span>High impact</span></div>
+    </div>
+    <div class="panel risk-detail reveal" id="riskDetail"></div>
+  </div>
+</section>
+
+<!-- =============================== PLAN ============================= -->
+<section class="section" id="plan">
+  <span class="kicker">07 · Our plan</span>
+  <h2>License, don't build</h2>
+  <p class="lede">Offer COVRA a licence first and ONDRAF one in parallel, each priced on the disposal cost it avoids. Sign nothing until three gates are passed. Click a step.</p>
+  <div class="stepper" id="stepper"></div>
+  <div class="panel reveal" id="stepDetail"></div>
+  <h3 style="margin-top:44px">What we ask ANSTO to do now</h3>
+  <div class="asks">
+    <div class="ask">Open characterisation and simulant-testing talks with COVRA, ONDRAF, Curium and IRE.</div>
+    <div class="ask">Confirm the Petten waste volume; it has never been published.</div>
+    <div class="ask">Consult host communities at Petten, Nieuwdorp, Fleurus and Dessel before any contract.</div>
+    <div class="ask">Extend the cost model to South Africa's producer, NTP.</div>
+  </div>
+  <p class="note"><b>Limitations.</b> Public documents only; no interviews with COVRA or ONDRAF. The Dutch volume is estimated. TRL 6 is provisional. Social licence evidence cannot yet compare sites.</p>
+</section>
+
+<footer class="footer">
+  <span>SCPU3001 Interdisciplinary Impact · University of Sydney · Partner: ANSTO</span>
+  <span>Built in R and Quarto · <a href="references.html">Sources [1]–[24]</a></span>
+</footer>
+
+<script src="assets/app.js"></script>
+```
