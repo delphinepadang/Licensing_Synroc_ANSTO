@@ -149,6 +149,20 @@ input[type="range"]::-moz-range-thumb {
 }
 .seg button.on { background: var(--ink); color: #fff; }
 
+/* ---------- Decision: score a new country ---------- */
+.newc { margin-top: 26px; border: 2px dashed rgba(47,127,112,.45); }
+.newc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; margin-bottom: 8px; }
+.newc-head h3 { margin: 6px 0 0; }
+.text-in { width: 100%; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line);
+           background: rgba(255,255,255,.85); font: 500 16px var(--text); color: var(--ink); }
+.text-in:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+.hint { font-size: 13px; color: var(--ink-soft); margin-top: -2px; }
+.musts { border: 1px solid var(--line); border-radius: 14px; padding: 10px 16px 12px; margin: 10px 0 0; background: rgba(255,255,255,.55); }
+.musts legend { font-weight: 700; font-size: 15px; padding: 0 6px; }
+.musts label { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; margin: 8px 0; cursor: pointer; }
+.musts input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--teal-dark); flex: none; }
+.bar-row.newc-row span:first-child { color: var(--teal-dark); }
+
 /* ---------- Problem: cubes ---------- */
 .cubes { width: 100%; height: auto; display: block; }
 .cube-label { font: 600 15px var(--text); fill: var(--ink); }

@@ -17,10 +17,14 @@ build_site_data <- function(n_draws = 10000, seed = 2026) {
                "Canada", "United Kingdom", "France", "New Zealand"),
     bloc   = c("EU", "EU", "Commonwealth", "Benchmark",
                "Commonwealth", "Commonwealth", "EU", "Commonwealth"),
-    stream = c("Candidate", "Candidate", "Needs data", "Benchmark",
-               "No stream", "No stream", "No stream", "No stream"),
-    stage1 = c("Proceeds", "Proceeds", "Evidence gap", "Benchmark",
-               "Excluded", "Excluded", "Excluded", "Excluded"),
+    stream = c("Matching: liquid waste from fission Mo-99",
+               "Matching: liquid waste from fission Mo-99",
+               "Matching, but no public volume data",
+               "Reference stream (ANSTO)",
+               "No matching waste", "No matching waste",
+               "No producer operating yet", "No matching waste"),
+    stage1 = c("Potential market", "Potential market", "No waste data", "Benchmark",
+               "No matching waste", "No matching waste", "Revisit later", "No matching waste"),
     legal  = c(3, 3, 3, 4, 3, 4, 3, 1),
     political = c(5, 4, 2, 3, 3, 4, 2, 1),
     site   = c("Curium, Petten · COVRA, Nieuwdorp",
@@ -38,7 +42,7 @@ build_site_data <- function(n_draws = 10000, seed = 2026) {
                "Darlington's Mo-99 route leaves no comparable liquid waste, and the ILW repository is unsited, so avoided costs are decades away.",
                "The only regulator with a staged process to assess a new wasteform before a repository exists, but no isotope waste stream.",
                "Backs its own vitrification industry (La Hague); no current Mo-99 producer.",
-               "No licence route and a nuclear-free identity; no isotope waste stream."),
+               "Licensing route undefined and a nuclear-free identity; no isotope waste stream."),
     stringsAsFactors = FALSE
   )
   countries$rq3 <- (countries$legal + countries$political) / 2

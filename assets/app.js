@@ -97,7 +97,9 @@
   drawCubes();
 
   /* ---------------- 02 Where: country chips + detail ----------------- */
-  const stClass = (s) => "st-" + s.split(" ")[0];
+  const ST = { "Potential market": "st-Proceeds", "No waste data": "st-Evidence", "Benchmark": "st-Benchmark",
+               "No matching waste": "st-Excluded", "Revisit later": "st-Excluded" };
+  const stClass = (s) => ST[s] || "st-Excluded";
   const chips = $("#chips");
   D.countries.forEach((c, i) => {
     const b = document.createElement("button");
@@ -132,28 +134,28 @@
 
   /* ---------------- 03 Research questions ---------------------------- */
   const RQ = [
-    { k: "RQ1", t: "Technical fit", who: "Ibrahim",
-      aim: "Which medical-isotope waste should Synroc treat, and how ready is it?",
-      app: "Compared waste chemistry, durability, volume and readiness across 8 countries, ANSTO as benchmark " + cite(9) + ".",
-      ans: "Liquid waste from fission Mo-99 at Petten and Fleurus; South Africa needs data. Provisional TRL 6 " + cite(2) + ".",
-      ev: "A HIP glass-ceramic held 26 wt% of this waste and passed the leach benchmark for high-level-waste glass " + cite(2) + ".",
-      risk: "Other producers' chemistry differs and SyMo is still commissioning " + cite(5) + ". Test real waste first." },
-    { k: "RQ2", t: "Economics", who: "Morris",
-      aim: "Where is Synroc cheaper than cement, and in what business model?",
-      app: "Present-value costing with a 20,000-scenario Monte Carlo model " + cite(10) + ".",
-      ans: "Licensing beats building everywhere. It is cheaper in 96% of Dutch and 81% of Belgian scenarios.",
-      ev: "Licensing breaks even at 0.5 m³ a year (NL) and 1.0 m³ (BE). In the UK and Canada it wins in at most 16%.",
-      risk: "The Dutch volume is unpublished: a 29% shortfall would fail the screen." },
-    { k: "RQ3", t: "Law and politics", who: "Andres, Tommy",
-      aim: "Can Synroc be licensed, and will governments back it?",
-      app: "A four-question legal test in 9 jurisdictions, then Kingdon's policy-window model " + cite(7) + ".",
-      ans: "Every country passes the legal test, so politics decides. The EU makes isotope supply its first priority " + cite(13) + ".",
-      ev: "The Dutch state funds the PALLAS reactor " + cite(14) + "; France backs its own vitrification " + cite(15) + "; South Africa's producer was halted for a year " + cite(16) + ".",
-      risk: "Neither COVRA nor ONDRAF has acceptance criteria for a new wasteform yet " + cite(23) + "." },
-    { k: "RQ4", t: "Social licence", who: "Lydia",
-      aim: "Will communities accept compact treatment, and does it change where Synroc can go?",
+    { k: "RQ1", t: "Technical fit", sub: "Which waste fits?",
+      aim: "Which medical-isotope waste fits Synroc, and how ready is the technology for it?",
+      app: "Compared waste chemistry, yearly volume, durability evidence and readiness (TRL) across 8 countries, with ANSTO as the reference " + cite(9) + ".",
+      ans: "Potential markets: liquid waste from fission Mo-99 at Petten (NL) and Fleurus (BE). South Africa has matching waste but no volume data. Provisional TRL 6 " + cite(2) + ".",
+      ev: "A Synroc glass-ceramic held 26% of this waste by weight and passed the leach test set for high-level-waste glass " + cite(2) + ".",
+      risk: "Other producers' chemistry differs slightly and SyMo is still commissioning " + cite(5) + ", so each producer's real waste must be tested first." },
+    { k: "RQ2", t: "Economics", sub: "Where does it pay?",
+      aim: "Where is Synroc cheaper than cement, and should ANSTO license it or build plants?",
+      app: "Present-value costing per m³ of waste, with 20,000 Monte Carlo scenarios " + cite(10) + ".",
+      ans: "A small but valuable market (2.6–15 m³ of liquid Mo-99 waste a year worldwide). Licensing is cheaper than cement in 96% of Dutch and 81% of Belgian scenarios, and beats building a plant everywhere.",
+      ev: "Licensing pays from 0.5 m³ a year (NL) and 1.0 m³ (BE). In the UK and Canada, disposal is 25–50 years away, so Synroc wins in at most 16% of scenarios.",
+      risk: "The Dutch volume is unpublished: 29% less and licensing no longer pays there." },
+    { k: "RQ3", t: "Law and politics", sub: "Can it be licensed?",
+      aim: "Can Synroc be licensed in each country, and will governments support it?",
+      app: "Each country's law checked against the same questions, then politics scored with Kingdon's policy-window model " + cite(7) + ".",
+      ans: "No jurisdiction legally blocks Synroc. Law and politics together favour the Netherlands and Belgium, where the state already funds isotope supply or its waste " + cite(13) + ", " + cite(14) + ".",
+      ev: "Only the UK can assess a new wasteform before a repository exists " + cite(24) + ". France backs its own vitrification " + cite(15) + "; South Africa's producer was halted for a year " + cite(16) + ".",
+      risk: "Neither COVRA nor ONDRAF has acceptance criteria for a new wasteform yet " + cite(23) + ", and policy can reverse, as at Kimba " + cite(18) + "." },
+    { k: "RQ4", t: "Social licence", sub: "Will hosts accept it?",
+      aim: "Will host communities accept compact treatment, and does that change where Synroc can go?",
       app: "The social licence to operate framework: legitimacy, credibility and trust " + cite(8) + ".",
-      ans: "Licence is earned site by site. Licensing helps: no new host community and no waste shipped abroad.",
+      ans: "Acceptance is earned site by site, so it cannot rank countries yet. Under a licence, treatment stays on already-licensed sites, and the licensee holds the social licence.",
       ev: "Canada sited its repository after a decade of engagement " + cite(17) + "; Kimba was set aside in 2023 " + cite(18) + ".",
       risk: "No survey compares attitudes to treatment with disposal " + cite(21) + "; Petten and Fleurus carry history " + cite(19) + ", " + cite(20) + "." }
   ];
@@ -161,14 +163,14 @@
   RQ.forEach((r, i) => {
     const b = document.createElement("button");
     b.className = "tab";
-    b.innerHTML = `${r.k} · ${r.t}<small>${r.who}</small>`;
+    b.innerHTML = `${r.k} · ${r.t}<small>${r.sub}</small>`;
     b.addEventListener("click", () => showRQ(i));
     tabs.appendChild(b);
   });
   function showRQ(i) {
     const r = RQ[i];
     $$(".tab", tabs).forEach((el, j) => el.classList.toggle("on", j === i));
-    $("#rqPanel").innerHTML = [["Aim", r.aim], ["Approach", r.app], ["Answer", r.ans], ["Evidence", r.ev], ["What could go wrong", r.risk]]
+    $("#rqPanel").innerHTML = [["Question", r.aim], ["How we tested it", r.app], ["Finding", r.ans], ["Evidence", r.ev], ["What could go wrong", r.risk]]
       .map(([h, t]) => `<div class="rq-cell"><b>${h}</b>${t}</div>`).join("");
   }
   showRQ(0);
@@ -183,10 +185,14 @@
   });
   const names = { NL: "Netherlands", BE: "Belgium", ZA: "South Africa" };
   const barCol = { NL: C.teal, BE: C.blue2, ZA: C.lilac };
+  let curW = [0.25, 0.25, 0.25, 0.25];
+  let ncReady = false;
   function decide() {
     const raw = crit.map(([k]) => +$("#w_" + k).value);
     const tot = raw.reduce((a, b) => a + b, 0) || 1;
     const w = raw.map((v) => v / tot);
+    curW = w;
+    if (ncReady) scoreNew();
     crit.forEach(([k], j) => { $("#o_" + k).textContent = Math.round(w[j] * 100) + "%"; });
     $("#wsum").textContent = "Weights are rescaled to sum to 100%.";
     const vals = D.scores.map((s) => {
@@ -213,6 +219,94 @@
   }));
   $("#smaaNote").innerHTML = `Across ${D.n_draws.toLocaleString()} random weightings (SMAA-2 ${cite(11)}), the Netherlands ranked first in ${Math.round(D.smaa.NL * 100)}%. Our threshold for a robust leader was 75%.`;
   decide();
+
+  /* ---------------- 04b Score a new country (reusable framework) ----- */
+  const ncSl = $("#ncSliders");
+  const ncHelp = {
+    rq1: "1 = no matching waste · 5 = proven on its waste",
+    rq2: "1 = costs more than cement · 5 = large saving",
+    rq3: "1 = hostile law/politics · 5 = clear route and support",
+    rq4: "1 = strong local opposition · 5 = strong local support"
+  };
+  crit.forEach(([k, lab]) => {
+    ncSl.insertAdjacentHTML("beforeend",
+      `<div class="control"><label for="nc_${k}">${lab} <output id="nco_${k}">3</output></label>
+       <input type="range" id="nc_${k}" min="1" max="5" step="0.5" value="3">
+       <div class="hint">${ncHelp[k]}</div></div>`);
+  });
+  const NC_EX = {
+    za:    { name: "South Africa", s: [3, 3, 2.5, 3], m: [true, true, true],
+             note: "Example only: South Africa's cost score is assumed (3) because its economics have not been modelled." },
+    fr:    { name: "France", s: [1, 2, 2.5, 3], m: [false, true, true],
+             note: "Example: France has no operating Mo-99 producer, so it fails the first must-have." },
+    blank: { name: "New country", s: [3, 3, 3, 3], m: [true, true, true], note: "" }
+  };
+  let ncNote = "";
+  function rng(seed) {   // small seeded generator so the result is stable
+    let a = seed >>> 0;
+    return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+  function robustness(rows, idx) {
+    const r = rng(2026), N = 2000;
+    let first = 0, top2 = 0;
+    for (let n = 0; n < N; n++) {
+      const g = [0, 0, 0, 0].map(() => -Math.log(1 - r()));      // Dirichlet(1) weights
+      const s = g.reduce((a, b) => a + b, 0);
+      const v = rows.map((x) => x.s.reduce((a, xi, j) => a + xi * g[j] / s, 0));
+      const better = v.filter((x, j) => j !== idx && x > v[idx] + 1e-12).length;
+      if (better === 0) first++;
+      if (better <= 1) top2++;
+    }
+    return { first: first / N, top2: top2 / N, N };
+  }
+  function scoreNew() {
+    const name = ($("#ncName").value || "New country").trim().slice(0, 40) || "New country";
+    const s = crit.map(([k]) => +$("#nc_" + k).value);
+    crit.forEach(([k], j) => { $("#nco_" + k).textContent = s[j]; });
+    const musts = ["#ncM1", "#ncM2", "#ncM3"].map((id) => $(id).checked);
+    const mustLab = ["no matching fission Mo-99 waste", "a legal block", "too little volume to pay for a licence"];
+    const ref = D.scores.filter((x) => x.rq2 !== null).map((x) => ({ id: x.id, name: names[x.id], s: crit.map(([k]) => x[k]), col: barCol[x.id] }));
+    const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const nm = esc(name);
+    const val = (sc) => sc.reduce((a, xi, j) => a + curW[j] * xi, 0);
+    if (musts.includes(false)) {
+      const why = musts.map((ok, j) => ok ? null : mustLab[j]).filter(Boolean).join(" and ");
+      $("#ncBars").innerHTML = ref.map((r) => `<div class="bar-row"><span>${r.name}</span><div class="track"><div class="fill" style="width:${val(r.s) / 5 * 100}%;background:${r.col}"></div></div><span class="val">${fmt(val(r.s), 2)}</span></div>`).join("")
+        + `<div class="bar-row gap"><span>${nm}</span><div class="track"><div class="fill" style="width:100%;background:repeating-linear-gradient(45deg,#ece7ee 0 8px,#f7f4f8 8px 16px)"></div></div><span class="val">–</span></div>`;
+      $("#ncVerdict").innerHTML = `<b>${nm} is screened out</b> at Stage 1: ${why}. A must-have cannot be traded off, so no weighting can rank it. Recommendation stays: the Netherlands first, Belgium second.`;
+      $("#ncVerdict").style.background = C.pink;
+      $("#ncRobust").innerHTML = ncNote;
+      return;
+    }
+    const rows = ref.concat([{ id: "NEW", name: nm, s, col: C.pink2 }]);
+    rows.forEach((r) => { r.v = val(r.s); });
+    const order = rows.slice().sort((a, b) => b.v - a.v);
+    $("#ncBars").innerHTML = order.map((r) => `<div class="bar-row${r.id === "NEW" ? " newc-row" : ""}"><span>${r.name}</span><div class="track"><div class="fill" style="width:${r.v / 5 * 100}%;background:${r.col}"></div></div><span class="val">${fmt(r.v, 2)}</span></div>`).join("");
+    const pos = order.findIndex((r) => r.id === "NEW") + 1;
+    const ord = ["1st", "2nd", "3rd"][pos - 1];
+    const lead = order[0];
+    const rb = robustness(rows, rows.length - 1);
+    $("#ncVerdict").innerHTML = pos === 1
+      ? `<b>Based on these inputs, the tool recommends ${nm} first</b>, ahead of ${order[1].id === "NL" ? "the Netherlands" : order[1].name} (${fmt(rows[rows.length - 1].v, 2)} vs ${fmt(order[1].v, 2)} out of 5).`
+      : `<b>Based on these inputs, ${nm} ranks ${ord} of 3</b> (${fmt(rows[rows.length - 1].v, 2)} out of 5). The tool still recommends ${lead.id === "NL" ? "the Netherlands" : lead.name} first.`;
+    $("#ncVerdict").style.background = pos === 1 ? C.mint : C.blue;
+    $("#ncRobust").innerHTML = `Stress test: across ${rb.N.toLocaleString()} random weightings, ${nm} ranks first in ${Math.round(rb.first * 100)}% and in the top two in ${Math.round(rb.top2 * 100)}%. ` + ncNote;
+  }
+  crit.forEach(([k]) => $("#nc_" + k).addEventListener("input", scoreNew));
+  ["#ncM1", "#ncM2", "#ncM3"].forEach((id) => $(id).addEventListener("change", scoreNew));
+  $("#ncName").addEventListener("input", scoreNew);
+  $$("#ncExamples button").forEach((b) => b.addEventListener("click", () => {
+    const ex = NC_EX[b.dataset.ex];
+    $("#ncName").value = ex.name;
+    crit.forEach(([k], j) => { $("#nc_" + k).value = ex.s[j]; });
+    ["#ncM1", "#ncM2", "#ncM3"].forEach((id, j) => { $(id).checked = ex.m[j]; });
+    ncNote = ex.note ? `<br><i>${ex.note}</i>` : "";
+    $$("#ncExamples button").forEach((x) => x.classList.toggle("on", x === b));
+    scoreNew();
+  }));
+  ncReady = true;
+  scoreNew();
 
   /* ---------------- 05 Economics ------------------------------------- */
   let econIdx = 0;

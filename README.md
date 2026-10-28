@@ -12,9 +12,10 @@ It is built with **R and Quarto in RStudio**, with no Shiny. R calculates everyt
 | Where | Click any of the 8 jurisdictions for its waste stream, legal and political scores |
 | Research | Tabs for RQ1–RQ4: aim, approach, answer, evidence, risks |
 | Decision | Set your own weights and watch the ranking update live (plus the SMAA result computed in R) |
+| Score a new country | Enter four scores (1–5) and three must-haves for any country; see its rank against the Netherlands and Belgium and a 2,000-weighting stress test. This makes the model a reusable framework for ANSTO |
 | Economics | Volume slider against break-even; discounting slider showing why distant disposal kills value |
 | Risks | Clickable 3×3 risk matrix, before vs after treatment |
-| Plan | Clickable gates roadmap (Now → G1 → G2 → G3 → Sign), what we ask ANSTO, limitations |
+| Plan | Clickable gates roadmap (Now → G1 → G2 → G3 → Sign), how ANSTO engages the Netherlands and Belgium, limitations |
 | Sources | IEEE reference list [1]–[24], matching the slides |
 
 ## Files
