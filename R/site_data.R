@@ -1,6 +1,10 @@
 # =====================================================================
 #  site_data.R  —  data behind the Synroc website (SCPU3001 / ANSTO)
 #
+#  Everything the website shows comes from this file. To test confidential
+#  data (e.g. a producer's measured volume), change it here and re-render
+#  locally; nothing leaves your computer unless you publish the site.
+#
 #  Everything the website shows comes from this file. The inputs mirror
 #  synroc_model.R (the report's model), so if the team changes a score,
 #  a volume or a risk rating here and re-renders, every chart updates.
@@ -10,39 +14,52 @@
 
 build_site_data <- function(n_draws = 10000, seed = 2026) {
 
-  ## ---------- Jurisdictions (RQ1 stream, RQ3 legal + political) ------
+  ## ---------- Jurisdictions (report Table 1, Table 2) ------------------
+  ## The eight cases were chosen to test the screen, not to confirm a
+  ## favourite: every fission Mo-99 producer in the Commonwealth and the EU,
+  ## plus each jurisdiction a single-criterion search would have picked.
   countries <- data.frame(
-    id     = c("NL", "BE", "ZA", "AU", "CA", "UK", "FR", "NZ"),
-    name   = c("Netherlands", "Belgium", "South Africa", "Australia",
-               "Canada", "United Kingdom", "France", "New Zealand"),
-    bloc   = c("EU", "EU", "Commonwealth", "Benchmark",
-               "Commonwealth", "Commonwealth", "EU", "Commonwealth"),
-    stream = c("Matching: liquid waste from fission Mo-99",
-               "Matching: liquid waste from fission Mo-99",
-               "Matching, but no public volume data",
-               "Reference stream (ANSTO)",
-               "No matching waste", "No matching waste",
-               "No producer operating yet", "No matching waste"),
-    stage1 = c("Potential market", "Potential market", "No waste data", "Benchmark",
-               "No matching waste", "No matching waste", "Revisit later", "No matching waste"),
-    legal  = c(3, 3, 3, 4, 3, 4, 3, 1),
-    political = c(5, 4, 2, 3, 3, 4, 2, 1),
+    id     = c("NL", "BE", "ZA", "CA", "UK", "FR", "EU", "AU"),
+    name   = c("Netherlands", "Belgium", "South Africa", "Canada",
+               "United Kingdom", "France", "EU framework", "Australia"),
+    bloc   = c("EU", "EU", "Commonwealth", "Commonwealth",
+               "Commonwealth", "EU", "EU", "Benchmark"),
+    why    = c("Fission Mo-99 producer: Curium, Petten",
+               "Fission Mo-99 producer: IRE, Fleurus",
+               "Fission Mo-99 producer: NTP, Pelindaba",
+               "Largest inventory: about 40% of world Mo-99 until 2016, and our plan's lead case",
+               "Readiest regulator: assesses new wasteforms early and has run HIP trials on its own waste",
+               "Future Mo-99 producer (Jules Horowitz Reactor)",
+               "Shared rules for the three EU cases",
+               "ANSTO's own waste stream and plant"),
+    stream = c("Matching waste; disposal paid on hand-over",
+               "Matching waste; documented volume",
+               "Matching waste; no volume or cost data",
+               "Now non-fission; disposal decades away",
+               "No isotope stream; other waste does not pay",
+               "No current stream; national vitrification industry",
+               "Sets duties, not wasteform criteria",
+               "Reference formulation; SyMo still commissioning"),
+    stage1 = c("Proceeds: first", "Proceeds: second", "Evidence gap", "Excluded",
+               "Excluded", "Revisit later", "Legal baseline", "Benchmark"),
+    legal  = c(3, 3, 3, 3, 4, 3, NA, 4),
+    political = c(5, 4, 2, 3, 4, 2, NA, 3),
     site   = c("Curium, Petten · COVRA, Nieuwdorp",
                "IRE, Fleurus · ONDRAF / Belgoprocess, Dessel",
                "NTP, Pelindaba",
-               "ANSTO, Lucas Heights (SyMo)",
-               "Darlington (neutron capture)",
+               "Darlington (non-fission Mo-99)",
                "Resins and sludges only",
                "No current producer",
-               "No candidate stream"),
-    note   = c("Liquid waste from fission Mo-99. COVRA takes ownership at hand-over for a one-off charge and stores it until disposal, foreseen around 2130, so every cubic metre avoided saves the full charge.",
-               "Same process family as Petten; about 3.2 m³ a year in 1985–96. Uranium recovery (RECUMO) may change which stream remains.",
-               "Same process family, but no volume data, a repository around 2065 and a regulator that halted production for about a year.",
-               "ANSTO's own plant, SyMo, is being commissioned. The national waste site at Kimba was abandoned in 2023.",
-               "Darlington's Mo-99 route leaves no comparable liquid waste, and the ILW repository is unsited, so avoided costs are decades away.",
-               "The only regulator with a staged process to assess a new wasteform before a repository exists, but no isotope waste stream.",
-               "Backs its own vitrification industry (La Hague); no current Mo-99 producer.",
-               "Licensing route undefined and a nuclear-free identity; no isotope waste stream."),
+               "Directive 2011/70/Euratom",
+               "ANSTO, Lucas Heights (SyMo)"),
+    note   = c("Liquid waste from fission Mo-99. COVRA takes ownership and liability at hand-over for a one-off charge and stores the waste until disposal, foreseen around 2130, so every cubic metre avoided saves the full charge.",
+               "Same process family as Petten; about 3.2 m³ a year in 1985–96, when Belgoprocess, ONDRAF's operator, processed IRE's liquid waste. Uranium recovery (RECUMO) may change which stream remains.",
+               "Same process family, so the chemistry fits, but there are no public volume or cost data, and the regulator halted NTP for about a year. Held in the evidence-gap register until it can be costed.",
+               "The obvious first pick by inventory size, and our plan's lead case. But Canada now makes Mo-99 without fission, leaving no comparable liquid waste, and its repository is decades away, so the avoided cost is heavily discounted.",
+               "The obvious first pick by regulatory readiness: the only regulator that assesses a new wasteform before a repository exists. But it has no isotope waste stream, and its resins and sludges pay only at about 240 m³ a year.",
+               "A future Mo-99 producer, but no current stream, and it backs its own vitrification industry (La Hague). Revisit when production starts.",
+               "Not a market but the shared rulebook for the Netherlands, Belgium and France. It sets the duty to license facilities and dispose of waste at home, but leaves wasteform acceptance to national agencies, so ANSTO must engage each agency.",
+               "ANSTO's own stream sets the reference formulation. SyMo is still being commissioned, and the national waste site at Kimba was set aside in 2023."),
     stringsAsFactors = FALSE
   )
   countries$rq3 <- (countries$legal + countries$political) / 2
@@ -67,6 +84,32 @@ build_site_data <- function(n_draws = 10000, seed = 2026) {
   first <- colnames(V)[apply(V, 1, which.max)]
   smaa <- as.list(table(factor(first, levels = rownames(X))) / n_draws)
 
+  ## ---------- Why the Netherlands ranks first (report Section 3.7) ------
+  ## Gap V(NL) - V(BE) = w1 + w2 + 0.5 w3 under each random weighting
+  gap <- as.vector(W %*% (X["NL", ] - X["BE", ]))
+  brk <- seq(0, 1, by = 0.05)
+  gap_hist <- as.vector(table(cut(pmin(gap, 1 - 1e-9), brk, right = FALSE)))
+  ## Scores are judgements: add an independent uniform error of +/-e to every
+  ## score, alongside uniform weights, and count how often NL stays first
+  perturb <- sapply(c(0.5, 1), function(e) {
+    set.seed(seed)
+    Wp <- matrix(rgamma(n_draws * 4, shape = 1), ncol = 4)
+    Wp <- Wp / rowSums(Wp)
+    E1 <- matrix(runif(n_draws * 4, -e, e), ncol = 4)
+    E2 <- matrix(runif(n_draws * 4, -e, e), ncol = 4)
+    v1 <- rowSums(Wp * (matrix(X["NL", ], n_draws, 4, byrow = TRUE) + E1))
+    v2 <- rowSums(Wp * (matrix(X["BE", ], n_draws, 4, byrow = TRUE) + E2))
+    mean(v1 > v2)
+  })
+  robust <- list(
+    gap_min = min(gap), gap_median = median(gap), share_positive = mean(gap > 0),
+    gap_hist = gap_hist, gap_breaks = brk,
+    perturb_half = perturb[1], perturb_one = perturb[2],
+    threshold = 0.75,
+    ## stress thresholds (report Table B3): fall in volume before failing Stage 1
+    stress_nl = 1 - 0.5 / 0.7, stress_be = 1 - 1.0 / 3.2
+  )
+
   ## ---------- Economics (RQ2, Monte Carlo medians from the report) -----
   econ <- data.frame(
     id = c("NL", "BE"),
@@ -83,20 +126,20 @@ build_site_data <- function(n_draws = 10000, seed = 2026) {
     id   = paste0("R", 1:16),
     risk = c("Agency declines to adopt Synroc or re-prices its product",
              "Saving does not reach the payer",
-             "Dutch volume unverified or below break-even",
-             "Non-reactor Mo-99 displaces fission output",
+             "Dutch volume unverified or falls below break-even",
+             "Non-reactor Mo-99 capacity displaces European fission output",
              "RECUMO removes or relocates IRE's liquid ILW",
-             "No operating reference plant",
-             "Shared formulation fails on licensee waste",
+             "No operating reference plant while ANSTO sells",
+             "Shared alkaline formulation fails on licensee waste",
              "Licensee first-plant cost overrun",
-             "Repository programmes slip",
+             "Repository programmes slip or reverse",
              "Service model blocked",
              "Technology-transfer conditions",
              "Licensor warranty liability",
-             "IP leakage to competing producers",
+             "IP leakage to competing Mo-99 producers",
              "Revenue concentration",
-             "Trust at Petten after 2025 enforcement",
-             "Trust at Fleurus after 2008 release"),
+             "Trust at Petten after the 2025 enforcement order",
+             "Trust at Fleurus after the 2008 release"),
     L  = c(3, 3, 2, 2, 2, 3, 2, 2, 3, 3, 1, 2, 2, 3, 2, 2),
     I  = c(3, 2, 3, 3, 3, 3, 3, 3, 1, 1, 2, 2, 2, 2, 2, 2),
     RL = c(2, 2, 2, 2, 2, 3, 1, 2, 3, 3, 1, 1, 1, 3, 2, 2),
@@ -104,13 +147,13 @@ build_site_data <- function(n_draws = 10000, seed = 2026) {
     response = c("Approach agencies as licensees; acceptance and tariff as licence conditions (G2)",
                  "Savings-share licence priced on the agency's avoided cost",
                  "Measure the volume during characterisation (G1)",
-                 "Monitor; minimum annual payment",
+                 "Retain and monitor; minimum annual payment (R14)",
                  "Characterise RECUMO residues within G1",
                  "Sign only after the ARPANSA operating licence (G3)",
                  "Simulant trials; re-tailor the formulation (G1)",
                  "Reuse existing cells; fixed-price engineering package",
-                 "Monitor",
-                 "None needed; licensing recommended",
+                 "Retain and monitor",
+                 "Avoid: licensing is recommended instead",
                  "Confirm scope early; local partner",
                  "Limit warranties to the G1-G2 specification",
                  "License to agencies; staged know-how release",
@@ -120,7 +163,7 @@ build_site_data <- function(n_draws = 10000, seed = 2026) {
     stringsAsFactors = FALSE
   )
 
-  list(countries = countries, scores = scores, smaa = smaa,
+  list(countries = countries, scores = scores, smaa = smaa, robust = robust,
        n_draws = n_draws, econ = econ, risks = risks,
        discount_rate = 0.035)
 }

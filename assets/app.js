@@ -97,8 +97,9 @@
   drawCubes();
 
   /* ---------------- 02 Where: country chips + detail ----------------- */
-  const ST = { "Potential market": "st-Proceeds", "No waste data": "st-Evidence", "Benchmark": "st-Benchmark",
-               "No matching waste": "st-Excluded", "Revisit later": "st-Excluded" };
+  const ST = { "Proceeds: first": "st-Proceeds", "Proceeds: second": "st-Proceeds", "Evidence gap": "st-Evidence",
+               "Benchmark": "st-Benchmark", "Legal baseline": "st-Benchmark",
+               "Excluded": "st-Excluded", "Revisit later": "st-Excluded" };
   const stClass = (s) => ST[s] || "st-Excluded";
   const chips = $("#chips");
   D.countries.forEach((c, i) => {
@@ -123,10 +124,13 @@
           <p style="margin:0">${c.note}</p>
         </div>
         <div>
-          <p style="margin:0 0 4px"><b>Waste stream (RQ1):</b> ${c.stream}</p>
-          ${meter("Legal score", c.legal, "")}
+          <p style="margin:0 0 4px"><b>Why we screened it:</b> ${c.why}</p>
+          <p style="margin:0 0 8px"><b>What the screen found:</b> ${c.stream}</p>
+          ${c.legal === null
+            ? '<p class="note" style="margin-top:6px">Not scored: the EU framework is the legal baseline for the three EU cases, not a market.</p>'
+            : `${meter("Legal score", c.legal, "")}
           ${meter("Political score", c.political, "pol")}
-          <p class="note" style="margin-top:6px">Law and politics (RQ3) = ${fmt(c.rq3)} / 5</p>
+          <p class="note" style="margin-top:6px">Law and politics (RQ3) = ${fmt(c.rq3)} / 5</p>`}
         </div>
       </div>`;
   }
@@ -135,25 +139,25 @@
   /* ---------------- 03 Research questions ---------------------------- */
   const RQ = [
     { k: "RQ1", t: "Technical fit", sub: "Which waste fits?",
-      aim: "Which medical-isotope waste fits Synroc, and how ready is the technology for it?",
-      app: "Compared waste chemistry, yearly volume, durability evidence and readiness (TRL) across 8 countries, with ANSTO as the reference " + cite(9) + ".",
-      ans: "Potential markets: liquid waste from fission Mo-99 at Petten (NL) and Fleurus (BE). South Africa has matching waste but no volume data. Provisional TRL 6 " + cite(2) + ".",
+      aim: "For which medical-isotope wastes does Synroc outperform cementation and vitrification, and at what technology readiness level (TRL)?",
+      app: "Compared each candidate's waste on chemistry, durability, volume and readiness (TRL), with ANSTO's stream as the reference " + cite(9) + ". Chemistry is a must-have in the screen.",
+      ans: "One waste matches: liquid waste from fission Mo-99, made in the Netherlands, Belgium and South Africa. Canada, the UK and France have no matching stream. Provisional TRL 6 " + cite(2) + ".",
       ev: "A Synroc glass-ceramic held 26% of this waste by weight and passed the leach test set for high-level-waste glass " + cite(2) + ".",
-      risk: "Other producers' chemistry differs slightly and SyMo is still commissioning " + cite(5) + ", so each producer's real waste must be tested first." },
+      risk: "Producers' exact compositions are unpublished, superiority over glass is unproven, and SyMo is still commissioning " + cite(5) + ", so each producer's real waste must be tested first." },
     { k: "RQ2", t: "Economics", sub: "Where does it pay?",
-      aim: "Where is Synroc cheaper than cement, and should ANSTO license it or build plants?",
-      app: "Present-value costing per m³ of waste, with 20,000 Monte Carlo scenarios " + cite(10) + ".",
+      aim: "How do Synroc's whole-of-life costs and liabilities compare with the incumbent pathway (cementation), and in what commercial form should ANSTO offer it?",
+      app: "Present-value costing per m³ of waste for each candidate stream, with 20,000 Monte Carlo scenarios " + cite(10) + ". Enough volume to pay is a must-have in the screen.",
       ans: "A small but valuable market (2.6–15 m³ of liquid Mo-99 waste a year worldwide). Licensing is cheaper than cement in 96% of Dutch and 81% of Belgian scenarios, and beats building a plant everywhere.",
       ev: "Licensing pays from 0.5 m³ a year (NL) and 1.0 m³ (BE). In the UK and Canada, disposal is 25–50 years away, so Synroc wins in at most 16% of scenarios.",
       risk: "The Dutch volume is unpublished: 29% less and licensing no longer pays there." },
     { k: "RQ3", t: "Law and politics", sub: "Can it be licensed?",
-      aim: "Can Synroc be licensed in each country, and will governments support it?",
-      app: "Each country's law checked against the same questions, then politics scored with Kingdon's policy-window model " + cite(7) + ".",
+      aim: "Which legal and political conditions enable or inhibit adoption, and where do the Commonwealth and the EU converge or diverge?",
+      app: "Each candidate's law checked against the same four questions (a legal block is a must-have), then politics scored with Kingdon's policy-window model " + cite(7) + ".",
       ans: "No jurisdiction legally blocks Synroc. Law and politics together favour the Netherlands and Belgium, where the state already funds isotope supply or its waste " + cite(13) + ", " + cite(14) + ".",
       ev: "Only the UK can assess a new wasteform before a repository exists " + cite(24) + ". France backs its own vitrification " + cite(15) + "; South Africa's producer was halted for a year " + cite(16) + ".",
-      risk: "Neither COVRA nor ONDRAF has acceptance criteria for a new wasteform yet " + cite(23) + ", and policy can reverse, as at Kimba " + cite(18) + "." },
+      risk: "The EU directive leaves wasteform acceptance to national agencies " + cite(23) + ", whose criteria for a new wasteform are not yet set, and policy can reverse, as at Kimba " + cite(18) + "." },
     { k: "RQ4", t: "Social licence", sub: "Will hosts accept it?",
-      aim: "Will host communities accept compact treatment, and does that change where Synroc can go?",
+      aim: "How does public and Indigenous acceptance of compact treatment compare with that of a repository, and does it affect feasibility?",
       app: "The social licence to operate framework: legitimacy, credibility and trust " + cite(8) + ".",
       ans: "Acceptance is earned site by site, so it cannot rank countries yet. Under a licence, treatment stays on already-licensed sites, and the licensee holds the social licence.",
       ev: "Canada sited its repository after a decade of engagement " + cite(17) + "; Kimba was set aside in 2023 " + cite(18) + ".",
@@ -217,6 +221,34 @@
     $$("#presets button").forEach((x) => x.classList.toggle("on", x === b));
     decide();
   }));
+  /* ---------------- 04a Why the Netherlands ranks first -------------- */
+  (function robustPanel() {
+    const R = D.robust, pct = (x) => Math.round(x * 100) + "%";
+    $("#rbSmaa").textContent = pct(D.smaa.NL);
+    $("#rbHalf").textContent = pct(R.perturb_half);
+    $("#rbOne").textContent = pct(R.perturb_one);
+    $("#rbVol").textContent = pct(R.stress_nl);
+    $("#rbVolBE").textContent = pct(R.stress_be);
+    $("#rbMed").textContent = fmt(R.gap_median, 2);
+    $("#rbThr").textContent = pct(R.threshold);
+    const svg = $("#gapSvg"); svg.innerHTML = "";
+    const x0 = 46, x1 = 540, y0 = 160, y1 = 18, max = Math.max.apply(null, R.gap_hist);
+    const nb = R.gap_hist.length, X = (v) => x0 + (x1 - x0) * (v + 0.25) / 1.25;
+    svgEl("rect", { x: X(-0.25), y: y1, width: X(0) - X(-0.25), height: y0 - y1, fill: C.pink, opacity: 0.6 }, svg);
+    svgText(svg, X(-0.125), y1 + 16, "Belgium", { "text-anchor": "middle", class: "cube-sub" });
+    svgText(svg, X(-0.125), y1 + 32, "first", { "text-anchor": "middle", class: "cube-sub" });
+    R.gap_hist.forEach((n, i) => {
+      const a = R.gap_breaks[i], b = R.gap_breaks[i + 1], h = (y0 - y1 - 30) * n / max;
+      svgEl("rect", { x: X(a) + 1, y: y0 - h, width: X(b) - X(a) - 2, height: h, rx: 2, fill: C.teal }, svg);
+    });
+    svgEl("line", { x1: X(0), x2: X(0), y1: y1, y2: y0, stroke: C.ink, "stroke-width": 2 }, svg);
+    svgEl("line", { x1: X(R.gap_median), x2: X(R.gap_median), y1: y1 + 16, y2: y0, stroke: C.tealDark, "stroke-dasharray": "4 4" }, svg);
+    svgText(svg, X(R.gap_median), y1 + 10, "median " + fmt(R.gap_median, 2), { "text-anchor": "middle", class: "cube-sub" });
+    svgEl("line", { x1: x0, x2: x1, y1: y0, y2: y0, stroke: C.ink }, svg);
+    [-0.25, 0, 0.25, 0.5, 0.75, 1].forEach((v) => svgText(svg, X(v), y0 + 18, v.toFixed(2), { "text-anchor": "middle", class: "cube-sub" }));
+    svgText(svg, x1, y0 + 36, "Weighted score gap, Netherlands minus Belgium (10,000 random weightings)", { "text-anchor": "end", class: "cube-sub" });
+  })();
+
   $("#smaaNote").innerHTML = `Across ${D.n_draws.toLocaleString()} random weightings (SMAA-2 ${cite(11)}), the Netherlands ranked first in ${Math.round(D.smaa.NL * 100)}%. Our threshold for a robust leader was 75%.`;
   decide();
 
@@ -412,7 +444,7 @@
   const STEPS = [
     { k: "Now", t: "Open talks", d: "Characterisation, agency dialogue and community engagement need no operating plant, so they start now. Confirm the Petten volume." },
     { k: "G1", t: "Formulation qualified", d: "Simulant, then active tests on each producer's real waste, including any residue left after uranium recovery (RECUMO) " + cite(12) + "." },
-    { k: "G2", t: "Package accepted", d: "COVRA and ONDRAF accept the Synroc package and confirm their tariffs. Neither has acceptance criteria for a new wasteform yet " + cite(23) + "." },
+    { k: "G2", t: "Package accepted", d: "COVRA and ONDRAF accept the Synroc package and confirm their tariffs. Acceptance criteria are set by each national agency, not the EU " + cite(23) + ", and the Dutch ones are still being written." },
     { k: "G3", t: "SyMo licensed", d: "ARPANSA licenses SyMo to operate, so ANSTO sells a working reference plant. If this slips past 2029, re-time offers to Petten's move to PALLAS in 2030 " + cite(22) + "." },
     { k: "Sign", t: "Licences, NL first", d: "License COVRA first and ONDRAF in parallel, priced on the disposal cost each avoids, with an upfront fee and a minimum annual payment." }
   ];

@@ -33,25 +33,25 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
 <header class="section hero" id="top">
   <span class="kicker">SCPU3001 · Industry partner: ANSTO</span>
   <h1>Licensing<br>Synroc</h1>
-  <p class="lede">Every nuclear-medicine scan leaves radioactive waste behind. ANSTO can shrink it by up to 99%. Our question: <b>where should ANSTO take this technology first?</b></p>
+  <p class="lede">Making the parent of the most used nuclear-medicine isotope leaves radioactive waste behind, and ANSTO's Synroc can shrink it by up to 99%. Our question: <b>where, and in what form, should ANSTO offer Synroc abroad?</b></p>
   <div class="hero-actions">
     <a class="cta solid" href="#decision">Try the decision model</a>
     <a class="cta" href="#newCountry">Score a new country</a>
   </div>
   <div class="grid-4">
     <div class="panel stat reveal"><div class="num" data-count="99" data-suffix="%">99%</div><div class="lab">less waste volume than cement, at best <a class="cite" href="references.html#r2">[2]</a></div></div>
-    <div class="panel stat reveal"><div class="num"><span data-count="2">2</span> sites</div><div class="lab">fit today: Petten (NL) and Fleurus (BE)</div></div>
+    <div class="panel stat reveal"><div class="num"><span data-count="2">2</span> sites</div><div class="lab">of 8 candidates pass the screen: Petten (NL) and Fleurus (BE)</div></div>
     <div class="panel stat reveal"><div class="num" data-count="100" data-suffix="%">100%</div><div class="lab">of 10,000 weightings rank the Netherlands first</div></div>
     <div class="panel stat reveal"><div class="num"><span data-count="3">3</span> gates</div><div class="lab">to pass before any licence is signed</div></div>
   </div>
-  <p class="team-line">Morris · Lydia · Ibrahim · Andres · Tommy · Delphine — University of Sydney, October 2026</p>
+  <p class="team-line">Morris · Lydia · Ibrahim · Andres · Tommy · Delphine — University of Sydney, November 2026</p>
 </header>
 
 <!-- ============================ PROBLEM ============================= -->
 <section class="section" id="problem">
   <span class="kicker">01 · The problem</span>
-  <h2>Waste with nowhere to go,<br>a fix without a market</h2>
-  <p class="lede">Making molybdenum-99 leaves 2.6–15 m³ of liquid radioactive waste a year worldwide <a class="cite" href="references.html#r1">[1]</a>, <a class="cite" href="references.html#r3">[3]</a>. Europe's two producers are Curium at Petten (NL) and IRE at Fleurus (BE). Neither country can dispose of the waste yet: the Netherlands plans disposal around 2130 <a class="cite" href="references.html#r4">[4]</a> and Belgium has not sited a repository. ANSTO's Synroc shrinks it, and its first plant, SyMo, is being commissioned <a class="cite" href="references.html#r5">[5]</a>.</p>
+  <h2>A proven fix,<br>an unknown market</h2>
+  <p class="lede">Making molybdenum-99 (Mo-99) leaves 2.6–15 m³ of liquid radioactive waste a year worldwide <a class="cite" href="references.html#r1">[1]</a>, <a class="cite" href="references.html#r3">[3]</a>. Cemented, it grows about 25-fold and is stored for decades until a repository opens <a class="cite" href="references.html#r4">[4]</a>. ANSTO's Synroc shrinks it instead, and its first plant, SyMo, is being commissioned <a class="cite" href="references.html#r5">[5]</a>. What ANSTO lacks is an evidence-based way to decide <b>where</b> to offer it.</p>
   <div class="grid-2" style="margin-top:28px">
     <div class="panel reveal">
       <h3>Shrink the waste</h3>
@@ -69,28 +69,39 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
         <span class="pill mint">Synroc: <b id="synOut">0.25–1 m³</b></span>
       </div>
       <p style="margin-top:18px">Cemented, each cubic metre becomes about <b>25 m³</b> of packages that must be stored, and paid for, until disposal. Synroc turns it into <b>0.25–1 m³</b> of dense ceramic <a class="cite" href="references.html#r2">[2]</a>, <a class="cite" href="references.html#r3">[3]</a>.</p>
-      <p><b>Our aim:</b> show ANSTO where, and in what commercial form, to offer Synroc abroad.</p>
-      <h3 style="margin-top:22px">Who gains if it works</h3>
+      <p><b>Our aim:</b> give ANSTO an evidence-based answer, and a reusable tool, for where and in what commercial form to offer Synroc abroad.</p>
+      <h3 style="margin-top:22px">Who decides whether it works</h3>
       <div class="grid-2" style="gap:10px">
-        <div class="pill mint">ANSTO: export revenue, no plant abroad</div>
-        <div class="pill blue">COVRA, ONDRAF: up to 99% less to store</div>
-        <div class="pill" style="background:var(--lilac)">Curium, IRE: lower waste charges</div>
-        <div class="pill pink">Host towns: no new waste site</div>
+        <div class="pill mint">Waste owners: does it save money?</div>
+        <div class="pill blue">Regulators: can it be licensed?</div>
+        <div class="pill" style="background:var(--lilac)">Scientists: does the waste match?</div>
+        <div class="pill pink">Host towns: will they accept it?</div>
       </div>
     </div>
+  </div>
+  <div class="panel reveal" style="margin-top:22px">
+    <h3>Why ANSTO cannot just pick a country</h3>
+    <p style="margin-top:0">A market exists only where all four conditions hold at once. Judged on any one alone, the obvious first market changes:</p>
+    <div class="grid-4" style="gap:12px">
+      <div class="pill blue"><b>Biggest inventory</b> → Canada</div>
+      <div class="pill" style="background:var(--lilac)"><b>Readiest regulator</b> → United Kingdom</div>
+      <div class="pill mint"><b>Matching chemistry</b> → every fission Mo-99 producer</div>
+      <div class="pill pink"><b>Future supply</b> → France</div>
+    </div>
+    <p style="margin-bottom:0">So we did not start from the Netherlands and Belgium. We started from eight candidates, tested every one on all four conditions, and let the evidence choose. The two European sites are <b>the result</b> of the screen, not its starting point, and the same tool can re-test any country as evidence changes.</p>
   </div>
 </section>
 
 <!-- ============================= WHERE ============================== -->
 <section class="section" id="where">
   <span class="kicker">02 · Where the waste is</span>
-  <h2>Eight jurisdictions, two potential markets</h2>
-  <p class="lede">Synroc was designed for liquid waste from fission Mo-99, so we looked for countries that make it. We screened four Commonwealth and three EU countries against Australia as the benchmark. Click a country.</p>
+  <h2>Eight candidates, each a plausible first market</h2>
+  <p class="lede">We searched the Commonwealth and the EU because their rules differ: the EU has a binding waste directive <a class="cite" href="references.html#r23">[23]</a>; the Commonwealth has none. Inside them we took every fission Mo-99 producer, plus each country a one-condition search would have picked, the EU's shared rules, and Australia as benchmark. Cases likely to fail were included on purpose: a screen that passed everyone would prove nothing, and each exclusion tells ANSTO where not to spend effort. Click a country.</p>
   <div class="legend">
-    <span><i class="st-Proceeds"></i>Potential market</span>
-    <span><i class="st-Evidence"></i>No waste data</span>
-    <span><i class="st-Benchmark"></i>Benchmark</span>
-    <span><i class="st-Excluded"></i>No matching waste</span>
+    <span><i class="st-Proceeds"></i>Proceeds to ranking</span>
+    <span><i class="st-Evidence"></i>Evidence gap</span>
+    <span><i class="st-Benchmark"></i>Benchmark or legal baseline</span>
+    <span><i class="st-Excluded"></i>Excluded or revisit later</span>
   </div>
   <div class="chips" id="chips"></div>
   <div class="panel detail reveal" id="countryDetail"></div>
@@ -101,7 +112,7 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
 <section class="section" id="questions">
   <span class="kicker">03 · Four questions</span>
   <h2>Four questions, one decision</h2>
-  <p class="lede">Each question is one condition a rollout must meet. Each answer becomes one score in the decision tool.</p>
+  <p class="lede">Every candidate faces the same four questions, one per condition a market must meet. Three answers can rule a country out at once (no matching waste, a legal block, too little waste to pay); the rest become scores in the decision tool.</p>
   <div class="tabs" id="rqTabs"></div>
   <div class="rq-grid" id="rqPanel"></div>
 </section>
@@ -130,12 +141,35 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
       <p class="note" id="smaaNote"></p>
     </div>
   </div>
+  <div class="panel reveal" id="whyNL" style="margin-top:22px">
+    <span class="kicker">The statistics</span>
+    <h3>Why the Netherlands ranks first, and how we tested it</h3>
+    <div class="grid-2" style="margin-top:14px">
+      <div>
+        <p style="margin-top:0"><b>1 · It is never worse.</b> The Netherlands scores 3, 5, 4 and 3 on the technical, economic, law-and-politics and social criteria; Belgium scores 2, 4, 3.5 and 3. With weights <i>w</i> summing to one, the gap is</p>
+        <p style="text-align:center;font-size:18px;margin:6px 0 10px">V(NL) − V(BE) = <i>w</i><sub>tech</sub> + <i>w</i><sub>econ</sub> + 0.5 <i>w</i><sub>law</sub></p>
+        <p>This is above zero for every weighting except one that puts all weight on social licence, where the two tie. In MCDA terms, the Netherlands <b>dominates</b> Belgium <a class="cite" href="references.html#r6">[6]</a>.</p>
+        <p><b>2 · Random weights (SMAA-2).</b> ANSTO has not set weights, so we drew 10,000 random sets, every combination equally likely, and recorded who ranked first <a class="cite" href="references.html#r11">[11]</a>. The chart shows the gap in every draw: all are above zero.</p>
+        <p><b>3 · Uncertain scores.</b> Scores are judgements, so we also let every score move by up to half a point, then a full point, in 10,000 more draws each.</p>
+        <p style="margin-bottom:0"><b>4 · The one weak point.</b> The ranking does not depend on preferences, but it does depend on one fact: Petten's waste volume, which is estimated at 0.7 m³ a year. Measuring it is the first task.</p>
+      </div>
+      <div>
+        <svg class="econ-svg" id="gapSvg" viewBox="0 0 560 200" role="img" aria-label="Histogram of the Netherlands' score minus Belgium's across 10,000 random weightings"></svg>
+        <div class="kpis" style="margin-top:6px">
+          <div class="kpi"><div class="v" id="rbSmaa"></div><div class="l">of 10,000 weightings rank NL first (median gap <span id="rbMed"></span>)</div></div>
+          <div class="kpi"><div class="v" id="rbHalf"></div><div class="l">still first if every score is ±0.5 out</div></div>
+          <div class="kpi"><div class="v" id="rbOne"></div><div class="l">still first if every score is ±1 out</div></div>
+        </div>
+        <p class="note">Robust means first in at least <span id="rbThr"></span> of draws, a threshold set before the analysis. Volume: the Dutch stream fails the screen after a <b id="rbVol"></b> fall, against <span id="rbVolBE"></span> for Belgium's documented stream. Computed in R when the site is built (seed 2026); full method in the report, Section 3.7 and Appendix B.</p>
+      </div>
+    </div>
+  </div>
   <div class="panel newc reveal" id="newCountry">
     <div class="newc-head">
       <div>
         <span class="kicker">Reusable framework</span>
         <h3>Score a new country</h3>
-        <p class="note" style="margin-top:4px">Enter four scores from 1 (poor) to 5 (strong) and tick the must-haves. The tool ranks the country against the Netherlands and Belgium using the weights above.</p>
+        <p class="note" style="margin-top:4px">Enter four scores from 1 (poor) to 5 (strong) and tick the must-haves. The tool ranks the country against the Netherlands and Belgium using the weights above. Everything runs in your browser: nothing you enter is sent or saved, so ANSTO can test confidential producer data here.</p>
       </div>
       <div class="seg" id="ncExamples">
         <button data-ex="za">Example: South Africa</button>
@@ -202,7 +236,7 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
 <section class="section" id="risks">
   <span class="kicker">06 · What could go wrong</span>
   <h2>Sixteen risks, three that could stop everything</h2>
-  <p class="lede">Agency refusal (R1), no operating licence for SyMo (R6) and a formulation that fails on real waste (R7) would remove both countries at once. They cannot be diversified, so each becomes a gate.</p>
+  <p class="lede">Agency refusal (R1), no operating licence for SyMo (R6) and a formulation that fails on real waste (R7) would remove both countries at once. They cannot be diversified, so each becomes a gate. Ratings follow ISO 31000; the full register is in the report, Appendix A.</p>
   <div class="seg" id="riskMode" style="margin:18px 0 18px">
     <button class="on" data-m="inherent">Before treatment</button>
     <button data-m="residual">After treatment</button>
@@ -233,7 +267,7 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
     <div class="ask"><b>Producers and regulators.</b> Confirm volumes with Curium and IRE (Petten's has never been published); brief ANVS and FANC early.</div>
     <div class="ask"><b>Communities.</b> Each licensee consults its host community (Petten or Nieuwdorp, Fleurus or Dessel) before any contract.</div>
   </div>
-  <p class="note"><b>Limitations.</b> Public documents only; no interviews with COVRA or ONDRAF. The Dutch volume is estimated. TRL 6 is provisional. Social licence evidence cannot yet compare sites.</p>
+  <p class="note"><b>Limitations.</b> Public documents only; no interviews with COVRA, ONDRAF or the producers. The Dutch volume is estimated. TRL 6 is provisional. Social licence evidence cannot yet compare sites. The eight cases test the framework rather than cover every country; producers outside the two blocs were not assessed, but the tool can screen them.</p>
 </section>
 
 <footer class="footer">

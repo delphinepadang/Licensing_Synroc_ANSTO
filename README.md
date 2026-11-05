@@ -8,11 +8,11 @@ It is built with **R and Quarto in RStudio**, with no Shiny. R calculates everyt
 
 | Section | Interactive feature |
 |---|---|
-| Problem | Slider: cubes drawn to true volume (liquid vs cemented vs Synroc) |
-| Where | Click any of the 8 jurisdictions for its waste stream, legal and political scores |
+| Problem | Slider: cubes drawn to true volume (liquid vs cemented vs Synroc); why ANSTO cannot just pick a country |
+| Where | Click any of the 8 candidates (incl. the EU framework and Australia as benchmark) for why it was screened, what the screen found, and its legal and political scores |
 | Research | Tabs for RQ1–RQ4: aim, approach, answer, evidence, risks |
-| Decision | Set your own weights and watch the ranking update live (plus the SMAA result computed in R) |
-| Score a new country | Enter four scores (1–5) and three must-haves for any country; see its rank against the Netherlands and Belgium and a 2,000-weighting stress test. This makes the model a reusable framework for ANSTO |
+| Decision | Set your own weights and watch the ranking update live; "Why the Netherlands ranks first" panel with the dominance argument, SMAA-2 histogram, score-uncertainty test and volume stress test, all computed in R |
+| Score a new country | Enter four scores (1–5) and three must-haves for any country; see its rank against the Netherlands and Belgium and a 2,000-weighting stress test. This makes the model a reusable framework for ANSTO. It runs in the browser only, so nothing entered is sent or saved |
 | Economics | Volume slider against break-even; discounting slider showing why distant disposal kills value |
 | Risks | Clickable 3×3 risk matrix, before vs after treatment |
 | Plan | Clickable gates roadmap (Now → G1 → G2 → G3 → Sign), how ANSTO engages the Netherlands and Belgium, limitations |
@@ -35,7 +35,7 @@ synroc-website/
     └── head.html          Google Fonts + icon
 ```
 
-To change a number, edit `R/site_data.R` and re-render. Every chart updates.
+To change a number, edit `R/site_data.R` and re-render. Every chart updates. ANSTO can do the same with confidential data (for example a producer's measured volume) on its own computer: render locally and do not publish.
 Text lives in `index.qmd`. The RQ tab text and the gate descriptions are in `assets/app.js`; search for `const RQ` and `const STEPS`.
 
 ## Run it in RStudio (about 2 minutes)
@@ -69,4 +69,4 @@ Then put the link, or a QR code of it, on the final slide.
 
 - Fonts load from Google Fonts. Offline, the site falls back to Georgia and Arial.
 - The cost figures are medians from our 20,000-draw Monte Carlo model; see the written report for the method.
-- Built for SCPU3001, University of Sydney, October 2026.
+- Built for SCPU3001, University of Sydney, October–November 2026. Content matches the final written report (November 2026).
