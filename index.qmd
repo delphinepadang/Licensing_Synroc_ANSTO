@@ -40,7 +40,7 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
   </div>
   <div class="grid-4">
     <div class="panel stat reveal"><div class="num" data-count="99" data-suffix="%">99%</div><div class="lab">less waste volume than cement, at best <a class="cite" href="references.html#r2">[2]</a></div></div>
-    <div class="panel stat reveal"><div class="num"><span data-count="2">2</span> sites</div><div class="lab">of 8 candidates pass the screen: Petten (NL) and Fleurus (BE)</div></div>
+    <div class="panel stat reveal"><div class="num"><span data-count="2">2</span> sites</div><div class="lab">of 6 candidates pass the screen: Petten (NL) and Fleurus (BE)</div></div>
     <div class="panel stat reveal"><div class="num" data-count="100" data-suffix="%">100%</div><div class="lab">of 10,000 weightings rank the Netherlands first</div></div>
     <div class="panel stat reveal"><div class="num"><span data-count="3">3</span> gates</div><div class="lab">to pass before any licence is signed</div></div>
   </div>
@@ -88,14 +88,14 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
       <div class="pill mint"><b>Matching chemistry</b> → every fission Mo-99 producer</div>
       <div class="pill pink"><b>Future supply</b> → France</div>
     </div>
-    <p style="margin-bottom:0">So we did not start from the Netherlands and Belgium. We started from eight candidates, tested every one on all four conditions, and let the evidence choose. The two European sites are <b>the result</b> of the screen, not its starting point, and the same tool can re-test any country as evidence changes.</p>
+    <p style="margin-bottom:0">So we did not start from the Netherlands and Belgium. We started from six candidates, tested every one on all four conditions, and let the evidence choose. The two European sites are <b>the result</b> of the screen, not its starting point, and the same tool can re-test any country as evidence changes.</p>
   </div>
 </section>
 
 <!-- ============================= WHERE ============================== -->
 <section class="section" id="where">
   <span class="kicker">02 · Where the waste is</span>
-  <h2>Eight candidates, each a plausible first market</h2>
+  <h2>Six candidates, each a plausible first market</h2>
   <p class="lede">We searched the Commonwealth and the EU because their rules differ: the EU has a binding waste directive <a class="cite" href="references.html#r23">[23]</a>; the Commonwealth has none. Inside them we took every fission Mo-99 producer, plus each country a one-condition search would have picked, the EU's shared rules, and Australia as benchmark. Cases likely to fail were included on purpose: a screen that passed everyone would prove nothing, and each exclusion tells ANSTO where not to spend effort. Click a country.</p>
   <div class="legend">
     <span><i class="st-Proceeds"></i>Proceeds to ranking</span>
