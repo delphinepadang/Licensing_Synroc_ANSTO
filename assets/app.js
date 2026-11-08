@@ -142,22 +142,22 @@
       aim: "For which medical-isotope wastes does Synroc outperform cementation and vitrification, and at what technology readiness level (TRL)?",
       app: "Compared each candidate's waste on chemistry, durability, volume and readiness (TRL), with ANSTO's stream as the reference " + cite(9) + ". Chemistry is a must-have in the screen.",
       ans: "One waste matches: liquid waste from fission Mo-99, made in the Netherlands, Belgium and South Africa. Canada, the UK and France have no matching stream. Provisional TRL 6 " + cite(2) + ".",
-      ev: "A Synroc glass-ceramic held 26% of this waste by weight and passed the leach test set for high-level-waste glass " + cite(2) + ".",
+      ev: "A Synroc glass-ceramic held 26% by weight of a simulant of this waste and passed the leach test set for high-level-waste glass " + cite(2) + ".",
       risk: "Producers' exact compositions are unpublished, superiority over glass is unproven, and SyMo is still commissioning " + cite(5) + ", so each producer's real waste must be tested first." },
     { k: "RQ2", t: "Economics", sub: "Where does it pay?",
-      aim: "How do Synroc's whole-of-life costs and liabilities compare with the incumbent pathway (cementation), and in what commercial form should ANSTO offer it?",
+      aim: "How do Synroc's whole-of-life costs compare with cementation's?",
       app: "Present-value costing per m³ of waste for each candidate stream, with 20,000 Monte Carlo scenarios " + cite(10) + ". Enough volume to pay is a must-have in the screen.",
       ans: "A small but valuable market (2.6–15 m³ of liquid Mo-99 waste a year worldwide). Licensing is cheaper than cement in 96% of Dutch and 81% of Belgian scenarios, and beats building a plant everywhere.",
       ev: "Licensing pays from 0.5 m³ a year (NL) and 1.0 m³ (BE). In the UK and Canada, disposal is 25–50 years away, so Synroc wins in at most 16% of scenarios.",
       risk: "The Dutch volume is unpublished: 29% less and licensing no longer pays there." },
     { k: "RQ3", t: "Law and politics", sub: "Can it be licensed?",
-      aim: "Which legal and political conditions enable or inhibit adoption, and where do the Commonwealth and the EU converge or diverge?",
+      aim: "Which legal and political conditions enable or inhibit adoption, and where do the Commonwealth and the EU diverge?",
       app: "Each candidate's law checked against the same four questions (a legal block is a must-have), then politics scored with Kingdon's policy-window model " + cite(7) + ".",
-      ans: "No jurisdiction legally blocks Synroc. Law and politics together favour the Netherlands and Belgium, where the state already funds isotope supply or its waste " + cite(13) + ", " + cite(14) + ".",
+      ans: "No jurisdiction legally blocks Synroc. Among the fission Mo-99 producers, law and politics favour the Netherlands and Belgium, where the state already funds isotope supply or its waste " + cite(13) + ", " + cite(14) + ".",
       ev: "Only the UK can assess a new wasteform before a repository exists " + cite(24) + ". France backs its own vitrification " + cite(15) + "; South Africa's producer was halted for a year " + cite(16) + ".",
       risk: "The EU directive leaves wasteform acceptance to national agencies " + cite(23) + ", whose criteria for a new wasteform are not yet set, and policy can reverse, as at Kimba " + cite(18) + "." },
     { k: "RQ4", t: "Social licence", sub: "Will hosts accept it?",
-      aim: "How does public and Indigenous acceptance of compact treatment compare with that of a repository, and does it affect feasibility?",
+      aim: "How does public and Indigenous acceptance of compact treatment compare with that of a repository?",
       app: "The social licence to operate framework: legitimacy, credibility and trust " + cite(8) + ".",
       ans: "Acceptance is earned site by site, so it cannot rank countries yet. Under a licence, treatment stays on already-licensed sites, and the licensee holds the social licence.",
       ev: "Canada sited its repository after a decade of engagement " + cite(17) + "; Kimba was set aside in 2023 " + cite(18) + ".",
@@ -255,10 +255,10 @@
   /* ---------------- 04b Score a new country (reusable framework) ----- */
   const ncSl = $("#ncSliders");
   const ncHelp = {
-    rq1: "1 = no matching waste · 5 = proven on its waste",
-    rq2: "1 = costs more than cement · 5 = large saving",
-    rq3: "1 = hostile law/politics · 5 = clear route and support",
-    rq4: "1 = strong local opposition · 5 = strong local support"
+    rq1: "1 = TRL 3 or below · 5 = TRL 8–9 on comparable active waste",
+    rq2: "1 = cheaper in under 25% of scenarios · 5 = cheaper in 90% or more",
+    rq3: "1 = pathway undefined, politics hostile · 5 = clear pathway with precedent, politics strongly favourable",
+    rq4: "1 = licence withheld or withdrawn · 5 = identification"
   };
   crit.forEach(([k, lab]) => {
     ncSl.insertAdjacentHTML("beforeend",
@@ -371,7 +371,7 @@
     svgEl("circle", { cx: X(V), cy: y, r: 11, fill: C.ink, stroke: "#fff", "stroke-width": 3 }, svg);
     for (let t = 0; t <= max; t++) svgText(svg, X(t), 124, t, { "text-anchor": "middle", class: "cube-sub" });
     svgText(svg, x1, 146, "m³ of liquid waste per year", { "text-anchor": "end", class: "cube-sub" });
-    $("#kSave").textContent = "A$" + fmt(e.saving_per_m3 * V) + "m";
+    $("#kSave").textContent = "A$" + fmt(e.saving_per_m3) + "m";
     $("#kHead").textContent = V >= B ? Math.round((1 - B / V) * 100) + "%" : "below";
     $("#kHead").style.color = V >= B ? C.ink : "#a2445c";
     $("#kP").textContent = Math.round(e.p_cheaper * 100) + "%";
@@ -443,10 +443,10 @@
   /* ---------------- 07 Plan stepper ---------------------------------- */
   const STEPS = [
     { k: "Now", t: "Open talks", d: "Characterisation, agency dialogue and community engagement need no operating plant, so they start now. Confirm the Petten volume." },
-    { k: "G1", t: "Formulation qualified", d: "Simulant, then active tests on each producer's real waste, including any residue left after uranium recovery (RECUMO) " + cite(12) + "." },
+    { k: "G1", t: "Formulation qualified", d: "Measure each stream and run simulant trials, benchmarked against cement and glass, including any residue left after uranium recovery (RECUMO) " + cite(12) + "." },
     { k: "G2", t: "Package accepted", d: "COVRA and ONDRAF accept the Synroc package and confirm their tariffs. Acceptance criteria are set by each national agency, not the EU " + cite(23) + ", and the Dutch ones are still being written." },
     { k: "G3", t: "SyMo licensed", d: "ARPANSA licenses SyMo to operate, so ANSTO sells a working reference plant. If this slips past 2029, re-time offers to Petten's move to PALLAS in 2030 " + cite(22) + "." },
-    { k: "Sign", t: "Licences, NL first", d: "License COVRA first and ONDRAF in parallel, priced on the disposal cost each avoids, with an upfront fee and a minimum annual payment." }
+    { k: "Sign", t: "Licences, NL first", d: "License COVRA first and ONDRAF in parallel, priced on the disposal cost each avoids, with an upfront fee, a minimum annual payment and a royalty per m³ above it." }
   ];
   const stepper = $("#stepper");
   STEPS.forEach((s, i) => {

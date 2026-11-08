@@ -185,7 +185,7 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
         <fieldset class="musts">
           <legend>Must-haves (Stage 1 screen)</legend>
           <label><input type="checkbox" id="ncM1" checked> Has liquid waste from fission Mo-99</label>
-          <label><input type="checkbox" id="ncM2" checked> No legal block on a treatment plant or foreign technology</label>
+          <label><input type="checkbox" id="ncM2" checked> No legal block on a treatment plant, new technology or foreign technology</label>
           <label><input type="checkbox" id="ncM3" checked> Volume above the licensing break-even (about 0.5–1 m³ a year)</label>
         </fieldset>
       </div>
@@ -214,9 +214,9 @@ cat("```{=html}\n", site_data_tag(), "\n```\n", sep = "")
       </div>
       <svg class="econ-svg" id="econSvg" viewBox="0 0 560 150" role="img" aria-label="Volume against break-even"></svg>
       <div class="kpis">
-        <div class="kpi"><div class="v" id="kSave"></div><div class="l">median saving per year</div></div>
+        <div class="kpi"><div class="v" id="kSave"></div><div class="l">median saving per m³ (modelled volume)</div></div>
         <div class="kpi"><div class="v" id="kHead"></div><div class="l">volume it can lose and still pay</div></div>
-        <div class="kpi"><div class="v" id="kP"></div><div class="l">of 20,000 scenarios cheaper than cement</div></div>
+        <div class="kpi"><div class="v" id="kP"></div><div class="l">of 20,000 scenarios cheaper than cement (at the modelled volume)</div></div>
       </div>
       <p class="note">Median saving per m³ and break-even volumes from our 20,000-draw Monte Carlo model; present values at a 3.5% real discount rate <a class="cite" href="references.html#r10">[10]</a>.</p>
     </div>
